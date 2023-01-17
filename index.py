@@ -4,8 +4,6 @@ import uuid
 import datetime
 import os
 
-scheduled_queue = os.environ.get('SCHEDULED_QUEUE')
-
 
 def lambda_handler(event, context):
     sqs = boto3.resource('sqs')
@@ -18,7 +16,7 @@ def lambda_handler(event, context):
         "job_class": event,
         "job_id": id,
         "provider_job_id": None,
-        "queue_name": scheduled_queue,
+        "queue_name": os.environ.get('SCHEDULED_QUEUE', default='scheduled'),
         "priority": None,
         "arguments": [],
         "executions": 0,
