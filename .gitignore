@@ -1,0 +1,4 @@
+shoryuken-scheduler/*
+.DS_Store
+.venv/*
+venv/*

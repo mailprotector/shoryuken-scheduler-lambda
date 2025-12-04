@@ -12,13 +12,12 @@ jobs:
     steps:
       - name: Install pre-requisites
         run: |
-          yum install amazon-linux-extras make tar zip git -y
-          amazon-linux-extras enable python3.8
-          yum install python3.8 -y
-          python3.8 -m ensurepip --upgrade
+          dnf update -y
+          dnf install make tar zip git -y
+          dnf install python3.13 -y
 
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
 
       - name: Create lambda package
         run: |
@@ -26,7 +25,7 @@ jobs:
 
       - name: Create release
         id: create-release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
