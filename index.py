@@ -8,7 +8,8 @@ import boto3
 
 def lambda_handler(event, context):
     sqs = boto3.resource("sqs")
-    queue = os.environ.get("SCHEDULED_QUEUE", default="scheduled")
+    queue_name = os.environ.get("SCHEDULED_QUEUE", "scheduled")
+    queue = sqs.get_queue_by_name(QueueName=queue_name)
 
     id = str(uuid.uuid4())
 
