@@ -17,7 +17,7 @@ def lambda_handler(event, context):
         "job_class": event,
         "job_id": id,
         "provider_job_id": None,
-        "queue_name": os.environ.get("SCHEDULED_QUEUE", default="scheduled"),
+        "queue_name": queue_name,
         "priority": None,
         "arguments": [],
         "executions": 0,
